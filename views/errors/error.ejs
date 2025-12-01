@@ -1,0 +1,10 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else {
+  res.locals.title = "Error"
+} %>
+
+<div class="error-container">
+  <p class="error-message"><%= message %></p>
+  <a href="/" class="btn-home">Return to Home</a>
+</div>
