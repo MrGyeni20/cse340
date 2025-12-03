@@ -1,6 +1,6 @@
 const express = require("express")
 const router = new express.Router() 
-const invController = require("../controllers/invcontroller")
+const invcontroller = require("../controllers/invcontroller")
 const utilities = require("../utilities")
 const invValidate = require('../utilities/inventory-validation')
 
