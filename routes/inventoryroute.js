@@ -1,20 +1,20 @@
 const express = require("express")
 const router = new express.Router() 
-const invcontroller = require("../controllers/invcontroller")
-const utilities = require("../utilities")
-const invValidate = require('../utilities/inventory-validation')
+const invController = require("../controllers/invcontroller")  // ← lowercase!
+const utilities = require("../utilities/")
+const invValidate = require("../utilities/inventory-validation")
 
 // Route to build inventory by classification view
-router.get("/type/:classificationId", utilities.handleErrors(invcontroller.buildByClassificationId))
+router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId))
 
 // Route to build vehicle detail view
-router.get("/detail/:invId", utilities.handleErrors(invcontroller.buildByInvId))
+router.get("/detail/:invId", utilities.handleErrors(invController.buildByInvId))
 
 // Route to build management view
-router.get("/", utilities.handleErrors(invcontroller.buildManagement))
+router.get("/", utilities.handleErrors(invController.buildManagement))
 
 // Route to build add classification view
-router.get("/add-classification", utilities.handleErrors(invcontroller.buildAddClassification))
+router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
 
 // Route to process add classification
 router.post(
@@ -25,14 +25,14 @@ router.post(
 )
 
 // Route to build add inventory view
-router.get("/add-inventory", utilities.handleErrors(invcontroller.buildAddInventory))
+router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
 
 // Route to process add inventory
 router.post(
   "/add-inventory",
   invValidate.inventoryRules(),
   invValidate.checkInventoryData,
-  utilities.handleErrors(invcontroller.addInventory)
+  utilities.handleErrors(invController.addInventory)
 )
 
 module.exports = router
