@@ -18,6 +18,7 @@ const pool = require('./database/')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 
+
 /* ***********************
  * Middleware
  * ************************/
@@ -59,10 +60,10 @@ app.set("layout", "./layouts/layout") // not at views root
 app.use(static)
 
 // Index route
-app.get("/", utilities.handleErrors(basecontroller.buildHome))
+app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory routes
-app.use("/inv", inventoryroute)
+app.use("/inv", inventoryRoute)
 
 // Intentional error route for testing (Task 3)
 app.get("/trigger-error", utilities.handleErrors(async (req, res, next) => {
