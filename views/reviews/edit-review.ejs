@@ -1,0 +1,71 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else {
+  res.locals.title = "Edit Review"
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<p class="review-subtitle">Editing review for: <strong><%= vehicle_name %></strong></p>
+
+<form id="editReviewForm" action="/review/update" method="post">
+  <fieldset>
+    <legend>Edit Your Review</legend>
+    
+    <input type="hidden" name="review_id" value="<%= review_id %>">
+    <input type="hidden" name="inv_id" value="<%= inv_id %>">
+    
+    <label for="review_rating">Rating:</label>
+    <select name="review_rating" id="review_rating" required>
+      <option value="">Select rating</option>
+      <option value="5" <%= review_rating == 5 ? 'selected' : '' %>>★★★★★ (5 stars)</option>
+      <option value="4" <%= review_rating == 4 ? 'selected' : '' %>>★★★★☆ (4 stars)</option>
+      <option value="3" <%= review_rating == 3 ? 'selected' : '' %>>★★★☆☆ (3 stars)</option>
+      <option value="2" <%= review_rating == 2 ? 'selected' : '' %>>★★☆☆☆ (2 stars)</option>
+      <option value="1" <%= review_rating == 1 ? 'selected' : '' %>>★☆☆☆☆ (1 star)</option>
+    </select>
+    
+    <label for="review_text">Your Review (10-500 characters):</label>
+    <textarea 
+      id="review_text" 
+      name="review_text" 
+      required
+      minlength="10"
+      maxlength="500"
+      rows="5"
+    ><%= review_text %></textarea>
+    <p class="form-note">
+      <span id="charCount">0</span>/500 characters
+    </p>
+    
+    <button type="submit" class="submit-btn">Update Review</button>
+    <a href="/inv/detail/<%= inv_id %>" class="btn-cancel">Cancel</a>
+  </fieldset>
+</form>
+
+<script>
+  const textarea = document.getElementById('review_text');
+  const charCount = document.getElementById('charCount');
+  
+  function updateCharCount() {
+    charCount.textContent = textarea.value.length;
+    if (textarea.value.length < 10) {
+      charCount.style.color = 'red';
+    } else if (textarea.value.length > 450) {
+      charCount.style.color = 'orange';
+    } else {
+      charCount.style.color = 'green';
+    }
+  }
+  
+  textarea.addEventListener('input', updateCharCount);
+  updateCharCount();
+</script>
