@@ -1,6 +1,5 @@
 const { Pool } = require("pg")
 require("dotenv").config()
-
 let pool
 
 if (process.env.NODE_ENV == "development") {
@@ -10,7 +9,6 @@ if (process.env.NODE_ENV == "development") {
       rejectUnauthorized: false,
     },
   })
-
   module.exports = {
     async query(text, params) {
       try {
@@ -26,6 +24,9 @@ if (process.env.NODE_ENV == "development") {
 } else {
   pool = new Pool({
     connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   })
   module.exports = pool
 }
