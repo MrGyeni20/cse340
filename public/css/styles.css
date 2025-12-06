@@ -525,3 +525,265 @@ footer p {
   background-color: #1565c0;
 }
 
+/* Management & Forms Styles */
+.management-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.management-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.management-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.management-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link-card {
+  background-color: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.link-card:hover {
+  background-color: #e8f4f8;
+  border-color: #1976d2;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.link-card h3 {
+  color: #1976d2;
+  margin-bottom: 0.5rem;
+}
+
+.link-card p {
+  color: #666;
+}
+
+/* Form Styles */
+form {
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+legend {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 5px rgba(25, 118, 210, 0.3);
+}
+
+textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.form-note {
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.submit-btn {
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background-color: #1565c0;
+}
+
+/* Flash Messages */
+.notice {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+.notice li {
+  margin: 0.5rem 0;
+}
+
+/* Error Messages */
+ul.notice {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  form {
+    padding: 1rem;
+  }
+  
+  .management-links {
+    grid-template-columns: 1fr;
+  }
+  
+  .management-container {
+    padding: 1rem;
+  }
+}
+/* Account Management Styles */
+.account-management {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.account-management h2 {
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.account-actions {
+  margin: 2rem 0;
+}
+
+.inventory-management {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #eee;
+}
+
+.inventory-management h3 {
+  color: #1976d2;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #1976d2;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  margin: 0.5rem 0;
+}
+
+.btn:hover {
+  background-color: #1565c0;
+}
+
+/* Update Forms Container */
+.update-forms-container {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.update-forms-container form {
+  margin-bottom: 3rem;
+}
+
+.update-forms-container fieldset {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.update-forms-container legend {
+  background-color: #1976d2;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 1.2rem;
+}
+
+/* Header Tools Styles */
+#tools {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+#tools a {
+  color: #333;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+#tools a:hover {
+  background-color: #e8f4f8;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .account-management,
+  .update-forms-container {
+    padding: 1rem;
+  }
+  
+  #tools {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

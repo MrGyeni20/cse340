@@ -12,12 +12,12 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/basecontroller")
 const inventoryRoute = require("./routes/inventoryroute")
+const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/")
 const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
-
 
 /* ***********************
  * Middleware
@@ -42,17 +42,20 @@ app.use(function(req, res, next){
 
 // Body parser middleware
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // Cookie parser middleware
 app.use(cookieParser())
+
+// JWT token check middleware
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * View Engine and Templates
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
+app.set("layout", "./layouts/layout")
 
 /* ***********************
  * Routes
@@ -65,7 +68,10 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
 
-// Intentional error route for testing (Task 3)
+// Account routes
+app.use("/account", accountRoute)
+
+// Intentional error route for testing
 app.get("/trigger-error", utilities.handleErrors(async (req, res, next) => {
   throw new Error("Intentional 500 error triggered for testing purposes")
 }))
