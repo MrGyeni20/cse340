@@ -18,6 +18,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const reviewRoute = require("./routes/reviewRoute")
 
 /* ***********************
  * Middleware
@@ -71,6 +72,9 @@ app.use("/inv", inventoryRoute)
 // Account routes
 app.use("/account", accountRoute)
 
+// Review Routes
+app.use("/review", reviewRoute)
+
 // Intentional error route for testing
 app.get("/trigger-error", utilities.handleErrors(async (req, res, next) => {
   throw new Error("Intentional 500 error triggered for testing purposes")
@@ -100,6 +104,9 @@ app.use(async (err, req, res, next) => {
     nav
   })
 })
+
+// Add with your other routes (after account routes)
+
 
 /* ***********************
  * Local Server Information

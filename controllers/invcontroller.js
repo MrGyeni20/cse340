@@ -27,12 +27,22 @@ invCont.buildByInvId = async function (req, res, next) {
   const inv_id = req.params.invId
   const vehicle = await invModel.getInventoryByInvId(inv_id)
   const detail = utilities.buildVehicleDetail(vehicle)
+  
+  // Get reviews for this vehicle
+  const reviews = await reviewModel.getReviewsByInvId(inv_id)
+  const ratingData = await reviewModel.getAverageRating(inv_id)
+  
   let nav = await utilities.getNav()
   const vehicleName = `${vehicle.inv_make} ${vehicle.inv_model}`
+  
   res.render("./inventory/detail", {
     title: vehicleName,
     nav,
     detail,
+    inv_id,
+    reviews,
+    avg_rating: ratingData.avg_rating || 0,
+    review_count: ratingData.review_count || 0
   })
 }
 
