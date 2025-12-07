@@ -47,6 +47,7 @@ async function registerAccount(req, res) {
       nav,
       errors: null,
     })
+    return
   }
 
   const regResult = await accountModel.registerAccount(
@@ -113,7 +114,15 @@ async function accountLogin(req, res) {
       })
     }
   } catch (error) {
-    throw new Error('Access Forbidden')
+    // FIXED: Proper error handling instead of throwing error
+    console.error('Login error:', error)
+    req.flash("notice", "Sorry, there was an error processing your login.")
+    res.status(500).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+      account_email,
+    })
   }
 }
 
@@ -213,6 +222,7 @@ async function updatePassword(req, res, next) {
       nav,
       errors: null,
     })
+    return
   }
 
   const updateResult = await accountModel.updatePassword(hashedPassword, account_id)
