@@ -13,12 +13,13 @@ const static = require("./routes/static")
 const baseController = require("./controllers/basecontroller")
 const inventoryRoute = require("./routes/inventoryroute")
 const accountRoute = require("./routes/accountRoute")
+const reviewRoute = require("./routes/reviewRoute")
+const errorRoute = require("./routes/errorRoute")  // ADD THIS
 const utilities = require("./utilities/")
 const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
-const reviewRoute = require("./routes/reviewRoute")
 
 /* ***********************
  * Middleware
@@ -72,13 +73,11 @@ app.use("/inv", inventoryRoute)
 // Account routes
 app.use("/account", accountRoute)
 
-// Review Routes
+// Review routes
 app.use("/review", reviewRoute)
 
-// Intentional error route for testing
-app.get("/trigger-error", utilities.handleErrors(async (req, res, next) => {
-  throw new Error("Intentional 500 error triggered for testing purposes")
-}))
+// Error route - ADD THIS
+app.use("/error", errorRoute)
 
 // File Not Found Route - must be last route
 app.use(async (req, res, next) => {
@@ -104,9 +103,6 @@ app.use(async (err, req, res, next) => {
     nav
   })
 })
-
-// Add with your other routes (after account routes)
-
 
 /* ***********************
  * Local Server Information
